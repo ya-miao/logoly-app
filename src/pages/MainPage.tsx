@@ -13,7 +13,7 @@ const MainPage = () => {
     <Box
       height="100%"
       display="flex"
-      justifyContent="center"
+      // justifyContent="center"
       flexDirection="column"
       sx={{ m: 2 }}
     >

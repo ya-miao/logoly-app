@@ -1,5 +1,7 @@
 import { AppBar, Box, Button, FormControlLabel, Grid, IconButton, Stack, Switch, Typography } from "@mui/material";
 
+import { Auth } from 'aws-amplify';
+
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
@@ -11,6 +13,16 @@ interface SiteHeaderProps {
 }
 
 const SiteHeader = ({ isDarkMode, setIsDarkMode, handleChangeSwitch }: SiteHeaderProps) => {
+  
+  const signOut = async () => {
+    try {
+      await Auth.signOut();
+      // await Auth.signOut({ global: true });
+    } catch (error) {
+      console.log('error signing out: ', error);
+    }
+  };
+
   return (
     <AppBar position="static">
       <Box sx={{ m: 2 }}>
@@ -63,7 +75,7 @@ const SiteHeader = ({ isDarkMode, setIsDarkMode, handleChangeSwitch }: SiteHeade
                 label="Top"
                 labelPlacement="top"
               /> */}
-              <IconButton color="secondary">
+              <IconButton onClick={signOut} color="secondary">
                 <LogoutIcon />
               </IconButton>
             </Stack>

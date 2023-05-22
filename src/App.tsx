@@ -3,22 +3,30 @@
 // import './App.css';
 
 import { useState } from 'react';
-import { Box, Switch } from '@mui/material';
+import { AppBar, Box, Card, CardContent, Paper, Stack, Typography } from '@mui/material';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
 import SiteHeader from './components/SiteHeader';
 import MainPage from './pages/MainPage';
 
-const App = () => {
+import { Authenticator, ThemeProvider as AuthThemeProvider, Theme, useTheme as authUseTheme, } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
+import { Amplify, Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
+
+const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleChangeSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsDarkMode(event.target.checked);
   };
 
-  const theme = createTheme({
+  const siteTheme = createTheme({
     palette: {
       // mode: 'light',
       // mode: 'dark',
@@ -42,11 +50,6 @@ const App = () => {
     },
     typography: {
       fontFamily: 'Montserrat',
-      // fontFamily: 'Kanit',
-      // fontFamily: 'Orbitron',
-      // fontFamily: 'Bruno Ace SC',
-      // fontFamily: 'Athiti',
-      // fontFamily: 'Patrick Hand',
       h1: {
         fontFamily: 'Orbitron',
       },
@@ -65,56 +68,173 @@ const App = () => {
       h6: {
         fontFamily: 'Orbitron',
       },
-      // h1: {
-      //   fontFamily: 'Bruno Ace SC',
-      // },
-      // h2: {
-      //   fontFamily: 'Bruno Ace SC',
-      // },
-      // h3: {
-      //   fontFamily: 'Bruno Ace SC',
-      // },
-      // h4: {
-      //   fontFamily: 'Bruno Ace SC',
-      // },
-      // h5: {
-      //   fontFamily: 'Bruno Ace SC',
-      // },
-      // h6: {
-      //   fontFamily: 'Bruno Ace SC',
-      // },
     },
   });
 
+  const { tokens } = authUseTheme();
+
+  const authTheme: Theme = {
+    name: 'Auth Theme',
+    tokens: {
+      fonts: {
+        default: {
+          variable: { value: 'Montserrat' },
+          static: { value: 'Montserrat' },
+        },
+      },
+      colors: {
+        background: {
+          primary: {
+            value: '#363646',
+          },
+          secondary: {
+            value: '#ffffff',
+          },
+        },
+        font: {
+          primary: {
+            value: '#ffffff'
+          },
+          secondary: {
+            value: '#363646'
+          },
+          interactive: {
+            value: '#ffffff',
+          },
+        },
+        brand: {
+          primary: {
+            '10': '#BDBDBD',
+            '80': '#9E9E9E',
+            '90': '#757575',
+            '100': '#616161',
+          },
+        },
+      },
+      components: {
+        tabs: {
+          item: {
+            _focus: {
+              color: {
+                value: '#ffffff',
+              },
+            },
+            _hover: {
+              color: {
+                value: '#9E9E9E',
+              },
+            },
+            _active: {
+              color: {
+                value: tokens.colors.white.value,
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  const components = {
+    Header() {
+      return (
+        <Card sx={{ mb: 2, bgcolor: isDarkMode ? '#212121' : '#363646' }}>
+          <CardContent>
+            <Stack direction='row' spacing={1} alignItems='center' justifyContent='center'>
+              <FitnessCenterIcon fontSize='large' color="secondary" />
+              <Typography variant='h4' color="secondary">LogOly</Typography>
+            </Stack>
+          </CardContent>
+        </Card>
+      );
+    },
+  };
+
+  const formFields = {
+    signIn: {
+      username: {
+        label: '',
+        placeholder: 'Username',
+      },
+      password: {
+        label: '',
+        placeholder: 'Password',
+      },
+    },
+    signUp: {
+      username: {
+        label: '',
+        placeholder: 'Username',
+      },
+      password: {
+        label: '',
+        placeholder: 'Password',
+      },
+      confirm_password: {
+        label: '',
+        placeholder: 'Confirm Password',
+      },
+      email: {
+        label: '',
+        placeholder: 'Email',
+      }
+    },
+    forceNewPassword: {
+      password: {
+        label: '',
+        placeholder: 'Password',
+      },
+    },
+    resetPassword: {
+      username: {
+        label: '',
+        placeholder: 'Email',
+      },
+    },
+    confirmResetPassword: {
+      confirmation_code: {
+        label: '',
+        placeholder: 'Confirmation Code',
+      },
+      confirm_password: {
+        label: '',
+        placeholder: 'Password',
+      },
+    },
+    confirmSignIn: {
+      confirmation_code: {
+        label: '',
+        placeholder: 'Confirmation Code',
+      },
+    },
+  };
+
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.tsx</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <ThemeProvider theme={theme}>
-      <Box
-        height="100%"
-        display="flex"
-        justifyContent="center"
-        flexDirection="column"
-      >
-        <div style={{ backgroundColor: isDarkMode ? '#696969' : '#bdbdbd', minHeight: '100vh', width: '100%' }}>
-          <SiteHeader isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} handleChangeSwitch={handleChangeSwitch} />
-          <MainPage />
-        </div>
-      </Box>
+    <ThemeProvider theme={siteTheme}>
+      <div style={{ backgroundColor: isDarkMode ? '#696969' : '#bdbdbd', minHeight: '100vh', width: '100%' }}>
+        <Box
+          height="100vh"
+          display="flex"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <AuthThemeProvider theme={authTheme}>
+            <Authenticator formFields={formFields} components={components}>
+              {({ signOut, user }) => (
+                <Box
+                  height="100vh"
+                  display="flex"
+                  justifyContent="center"
+                  flexDirection="column"
+                >
+                  <SiteHeader isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} handleChangeSwitch={handleChangeSwitch} />
+                  <MainPage />
+                </Box>
+              )}
+            </Authenticator>
+          </AuthThemeProvider>
+        </Box>
+      </div>
     </ThemeProvider>
   );
 }

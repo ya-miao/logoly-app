@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-logolyapp-dev-130520-authRole",
+      "UnauthRoleArn": "arn:aws:iam::810036735283:role/amplify-logolyapp-dev-130520-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::810036735283:role/amplify-logolyapp-dev-130520-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-logolyapp-dev-130520-deployment",
+      "UnauthRoleName": "amplify-logolyapp-dev-130520-unauthRole",
+      "StackName": "amplify-logolyapp-dev-130520",
+      "StackId": "arn:aws:cloudformation:us-east-2:810036735283:stack/amplify-logolyapp-dev-130520/d6579000-f8c2-11ed-b252-0a6efcd1c579",
+      "AmplifyAppId": "d1a5ho07ayhfbf"
+    },
+    "categories": {
+      "auth": {
+        "logolyappe16de015": {}
+      }
+    }
+  }
+}
