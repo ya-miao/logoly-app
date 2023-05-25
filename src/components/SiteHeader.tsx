@@ -1,4 +1,6 @@
-import { AppBar, Box, Button, FormControlLabel, Grid, IconButton, Stack, Switch, Typography } from "@mui/material";
+import { useEffect } from "react";
+
+import { AppBar, Box, Button, Fab, FormControlLabel, Grid, IconButton, Stack, Switch, Typography } from "@mui/material";
 
 import { Auth } from 'aws-amplify';
 
@@ -7,13 +9,20 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 
 interface SiteHeaderProps {
+  user: any;
   isDarkMode: boolean;
   setIsDarkMode: any;
   handleChangeSwitch: any;
 }
 
-const SiteHeader = ({ isDarkMode, setIsDarkMode, handleChangeSwitch }: SiteHeaderProps) => {
-  
+const SiteHeader = ({ user, isDarkMode, setIsDarkMode, handleChangeSwitch }: SiteHeaderProps) => {
+
+  // TODO: Just checking for user attributes
+  useEffect(() => {
+    console.log('USER:');
+    console.log(user);
+  }, [user])
+
   const signOut = async () => {
     try {
       await Auth.signOut();
@@ -35,53 +44,37 @@ const SiteHeader = ({ isDarkMode, setIsDarkMode, handleChangeSwitch }: SiteHeade
           </Grid>
           <Grid item display={{ xs: 'block', sm: 'none' }}>
             <Stack direction='row' spacing={1} alignItems='center' justifyContent='center'>
-              <FitnessCenterIcon />
+              <FitnessCenterIcon fontSize='small' />
               <Typography variant='h5'>LogOly</Typography>
             </Stack>
           </Grid>
-          {/* <Grid item>
-            <Switch
-              checked={isDarkMode}
-              onChange={handleChangeSwitch}
-              color="secondary"
-              size='small'
-            />
-          </Grid> */}
-          {/* <Grid item display={{ xs: 'none', sm: 'block' }}>
-            <Button size='small' sx={{ textTransform: 'none' }} variant='contained' color='secondary'>
-              <Stack direction='row' spacing={0.5}>
-                <LogoutIcon />
-                <Typography fontFamily='Orbitron'>Log Out</Typography>
-              </Stack>
-            </Button>
-          </Grid> */}
-          {/* <Grid item display={{ xs: 'block', sm: 'none' }}> */}
-          <Grid item>
-            <Stack direction='row' spacing={0.5} alignItems='center' justifyContent='center'>
+          <Grid item display={{ xs: 'none', sm: 'block' }}>
+            <Stack direction='row' spacing={2} alignItems='center' justifyContent='center'>
               <Switch
                 checked={isDarkMode}
                 onChange={handleChangeSwitch}
                 color="secondary"
                 size='small'
               />
-              {/* <FormControlLabel
-                value="top"
-                control={<Switch
-                  checked={isDarkMode}
-                  onChange={handleChangeSwitch}
-                  color="secondary"
-                  size='small'
-                />}
-                label="Top"
-                labelPlacement="top"
-              /> */}
-              <IconButton onClick={signOut} color="secondary">
+              <Fab onClick={signOut} color='secondary' size="small" >
                 <LogoutIcon />
-              </IconButton>
+              </Fab>
+            </Stack>
+          </Grid>
+          <Grid item display={{ xs: 'block', sm: 'none' }}>
+            <Stack direction='row' spacing={2} alignItems='center' justifyContent='center'>
+              <Switch
+                checked={isDarkMode}
+                onChange={handleChangeSwitch}
+                color="secondary"
+                size='small'
+              />
+              <Fab onClick={signOut} color='secondary' size="small" >
+                <LogoutIcon fontSize='small' />
+              </Fab>
             </Stack>
           </Grid>
         </Grid>
-        {/* </Stack> */}
       </Box>
     </AppBar >
   );

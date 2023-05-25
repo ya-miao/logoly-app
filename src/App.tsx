@@ -2,7 +2,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AppBar, Box, Card, CardContent, Paper, Stack, Typography } from '@mui/material';
 
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
@@ -21,6 +21,7 @@ Amplify.configure(awsconfig);
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleChangeSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsDarkMode(event.target.checked);
@@ -37,7 +38,7 @@ const App = () => {
         // main: '#332b41',
         // main: '#3d3a4a',
         // main: '#2e2e39',
-        main: '#363646',
+        main: isDarkMode ? '#212121' : '#363646',
       },
       secondary: {
         main: '#ffffff',
@@ -85,7 +86,7 @@ const App = () => {
       colors: {
         background: {
           primary: {
-            value: '#363646',
+            value: isDarkMode ? '#212121' : '#363646',
           },
           secondary: {
             value: '#ffffff',
@@ -147,6 +148,17 @@ const App = () => {
           </CardContent>
         </Card>
       );
+    },
+    Footer() {
+      return (
+        <Card sx={{ mt: 2, bgcolor: isDarkMode ? '#212121' : '#363646' }}>
+          <CardContent>
+            <Stack direction='row' alignItems='center' justifyContent='center'>
+              <Typography variant='overline' color="secondary">Train deliberately.</Typography>
+            </Stack>
+          </CardContent>
+        </Card>
+      );;
     },
   };
 
@@ -211,9 +223,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={siteTheme}>
-      <div style={{ backgroundColor: isDarkMode ? '#696969' : '#bdbdbd', minHeight: '100vh', width: '100%' }}>
+      <div style={{ backgroundColor: isDarkMode ? '#696969' : '#bdbdbd', minHeight: '150vh', width: '100%' }}>
         <Box
-          height="100vh"
+          height="150vh"
           display="flex"
           justifyContent="center"
           flexDirection="column"
@@ -222,15 +234,16 @@ const App = () => {
             <Authenticator formFields={formFields} components={components}>
               {({ signOut, user }) => (
                 <Box
-                  height="100vh"
+                  height="150vh"
                   display="flex"
                   justifyContent="center"
                   flexDirection="column"
                 >
-                  <SiteHeader isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} handleChangeSwitch={handleChangeSwitch} />
-                  <MainPage />
+                  <SiteHeader user={user} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} handleChangeSwitch={handleChangeSwitch} />
+                  <MainPage isDarkMode={isDarkMode} />
                 </Box>
-              )}
+              )
+              }
             </Authenticator>
           </AuthThemeProvider>
         </Box>
