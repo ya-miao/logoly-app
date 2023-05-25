@@ -27,6 +27,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonIcon from '@mui/icons-material/Person';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 import { useTheme } from '@mui/material/styles';
 
@@ -34,7 +35,7 @@ import SelectedSessionDialog from "../components/SelectedSessionDIalog";
 import CreateSessionDialog from "../components/CreateSessionDialog";
 
 // TEST 
-import StartSessionDialog from "../components/StartSessionDialog";
+import LineProgressChart from "../components/charts/LineProgressChart";
 //
 
 interface MainPageProps {
@@ -64,10 +65,10 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
 
   // TODO: Dummy data for the session ListItems
   const dummyData = {
-    programName: '3 Day Chinese Program',
+    programName: '3 Day Chinese',
     programInfo: [
       {
-        sessionName: '3 Day Chinese 1A',
+        sessionName: 'Session 1A',
         exercises: [
           {
             exerciseName: 'Snatch',
@@ -102,7 +103,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 1B',
+        sessionName: 'Session 1B',
         exercises: [
           {
             exerciseName: 'Back Squat',
@@ -137,7 +138,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 1C',
+        sessionName: 'Session 1C',
         exercises: [
           {
             exerciseName: 'Snatch',
@@ -172,7 +173,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 2A',
+        sessionName: 'Session 2A',
         exercises: [
           {
             exerciseName: 'Snatch Deadlift',
@@ -207,7 +208,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 2B',
+        sessionName: 'Session 2B',
         exercises: [
           {
             exerciseName: 'Power Clean & Power Jerk',
@@ -242,7 +243,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 2C',
+        sessionName: 'Session 2C',
         exercises: [
           {
             exerciseName: 'Snatch',
@@ -277,7 +278,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 3A',
+        sessionName: 'Session 3A',
         exercises: [
           {
             exerciseName: 'Snatch',
@@ -312,7 +313,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 3B',
+        sessionName: 'Session 3B',
         exercises: [
           {
             exerciseName: 'Front Squat',
@@ -347,7 +348,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 3C',
+        sessionName: 'Session 3C',
         exercises: [
           {
             exerciseName: 'Snatch',
@@ -382,7 +383,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 4A',
+        sessionName: 'Session 4A',
         exercises: [
           {
             exerciseName: 'Muscle Snatch',
@@ -411,7 +412,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 4B',
+        sessionName: 'Session 4B',
         exercises: [
           {
             exerciseName: 'Power Snatch',
@@ -440,7 +441,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         ]
       },
       {
-        sessionName: '3 Day Chinese 4C',
+        sessionName: 'Session 4C',
         exercises: [
           {
             exerciseName: 'Snatch',
@@ -681,7 +682,7 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         <TabPanel value={tabValue} index={1}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Button variant='contained' fullWidth sx={{ textTransform: 'none' }}>
+              <Button variant='outlined' fullWidth color={isDarkMode ? 'secondary' : 'primary'} sx={{ textTransform: 'none' }}>
                 <Stack width='100%' direction='row' spacing={1} alignItems='center' justifyContent='center'>
                   <AddIcon />
                   <Typography variant='h6'>Create Program</Typography>
@@ -766,12 +767,93 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
           </Grid>
         </TabPanel>
         <TabPanel value={tabValue} index={2}>
-          Item Three
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Card>
+                <CardContent>
+                  <Stack spacing={2}>
+                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
+                      <Typography variant='h6' sx={{ mx: 2 }}>Snatch</Typography>
+                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
+                        <LineProgressChart />
+                      </Stack>
+                    </Stack>
+                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+                      <Stack direction='row' spacing={1}>
+                        <QueryStatsIcon fontSize='small' />
+                        <Typography>View</Typography>
+                      </Stack>
+                    </Button>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Card>
+                <CardContent>
+                  <Stack spacing={2}>
+                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
+                      <Typography variant='h6' sx={{ mx: 2 }}>Clean & Jerk</Typography>
+                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
+                        <LineProgressChart />
+                      </Stack>
+                    </Stack>
+                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+                      <Stack direction='row' spacing={2}>
+                        <QueryStatsIcon fontSize='small' />
+                        <Typography>View</Typography>
+                      </Stack>
+                    </Button>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Card>
+                <CardContent>
+                  <Stack spacing={2}>
+                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
+                      <Typography variant='h6' sx={{ mx: 2 }}>Clean</Typography>
+                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
+                        <LineProgressChart />
+                      </Stack>
+                    </Stack>
+                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+                      <Stack direction='row' spacing={2}>
+                        <QueryStatsIcon fontSize='small' />
+                        <Typography>View</Typography>
+                      </Stack>
+                    </Button>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Card>
+                <CardContent>
+                  <Stack spacing={2}>
+                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
+                      <Typography variant='h6' sx={{ mx: 2 }}>Jerk</Typography>
+                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
+                        <LineProgressChart />
+                      </Stack>
+                    </Stack>
+                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+                      <Stack direction='row' spacing={2}>
+                        <QueryStatsIcon fontSize='small' />
+                        <Typography>View</Typography>
+                      </Stack>
+                    </Button>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
         </TabPanel>
       </SwipeableViews>
       {/* TODO - Move these */}
       <CreateSessionDialog openCreateSessionDialog={openCreateSessionDialog} setOpenCreateSessionDialog={setOpenCreateSessionDialog} />
-      <SelectedSessionDialog isDarkMode={isDarkMode} selectedSession={selectedSession} setSelectedSession={setSelectedSession} openSelectedSessionDialog={openSelectedSessionDialog} setOpenSelectedSessionDialog={setOpenSelectedSessionDialog} />
+      <SelectedSessionDialog programName={dummyData?.programName} isDarkMode={isDarkMode} selectedSession={selectedSession} setSelectedSession={setSelectedSession} openSelectedSessionDialog={openSelectedSessionDialog} setOpenSelectedSessionDialog={setOpenSelectedSessionDialog} />
       {/* TEST */}
       {/* <StartSessionDialog openStartSessionDialog={openStartSessionDialog} setOpenStartSessionDialog={setOpenStartSessionDialog} /> */}
 
