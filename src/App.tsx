@@ -225,7 +225,8 @@ const App = () => {
     <ThemeProvider theme={siteTheme}>
       <div style={{ backgroundColor: isDarkMode ? '#696969' : '#bdbdbd', minHeight: '180vh', width: '100%' }}>
         <Box
-          height="180vh"
+          height="100vh"
+          // height="180vh"
           display="flex"
           justifyContent="center"
           flexDirection="column"
@@ -234,7 +235,8 @@ const App = () => {
             <Authenticator formFields={formFields} components={components}>
               {({ signOut, user }) => (
                 <Box
-                  height="180vh"
+                  height="100vh"
+                  // height="180vh"
                   display="flex"
                   justifyContent="center"
                   flexDirection="column"

@@ -27,7 +27,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonIcon from '@mui/icons-material/Person';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 import { useTheme } from '@mui/material/styles';
 
@@ -36,6 +35,9 @@ import CreateSessionDialog from "../components/CreateSessionDialog";
 
 // TEST 
 import LineProgressChart from "../components/charts/LineProgressChart";
+import ProgressTab from "../components/tabs/ProgressTab";
+import ProgramsTab from "../components/tabs/ProgramsTab";
+import StatsTab from "../components/tabs/StatsTab";
 //
 
 interface MainPageProps {
@@ -618,10 +620,10 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
 
   return (
     <Box
-      height="100%"
+      height="100vh"
       display="flex"
       flexDirection="column"
-    // sx={{ m: 2 }}
+      overflow='auto'
     >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs variant="fullWidth" value={tabValue} onChange={handleChangeTab}>
@@ -648,215 +650,17 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={tabValue} index={0}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                  <Stack direction='column' spacing={2} sx={{ mx: 1 }}>
-                    <Typography variant='h6'>Athlete Stats</Typography>
-                    <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                      <TextField variant='filled' size='small' label='Name' defaultValue='Elizabread' />
-                      <TextField variant='filled' size='small' label='Height' defaultValue='160 cm' />
-                      <TextField variant='filled' size='small' label='Weight' defaultValue='52 kg' />
-                    </Stack>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                  <Stack direction='column' spacing={2} sx={{ mx: 1 }}>
-                    <Typography variant='h6'>Account Settings</Typography>
-                    <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                      <TextField variant='filled' size='small' label='username' defaultValue='l_am_null' />
-                      <TextField variant='filled' size='small' label='Email' defaultValue='some@email.com' />
-                      <Button variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>Change Password</Button>
-                    </Stack>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+          <StatsTab isDarkMode={isDarkMode} />
         </TabPanel>
         <TabPanel value={tabValue} index={1}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Button variant='outlined' fullWidth color={isDarkMode ? 'secondary' : 'primary'} sx={{ textTransform: 'none' }}>
-                <Stack width='100%' direction='row' spacing={1} alignItems='center' justifyContent='center'>
-                  <AddIcon />
-                  <Typography variant='h6'>Create Program</Typography>
-                </Stack>
-              </Button>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Accordion disableGutters>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                >
-                  <Typography variant='h6'>{dummyData?.programName}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Stack alignItems='center' justifyContent='flex-end'>
-                    <Button fullWidth size='small' color={isDarkMode ? 'secondary' : 'primary'}
-                      onClick={() => {
-                        setOpenCreateSessionDialog(true);
-                      }}
-                    >
-                      <Stack width='100%' direction='row' spacing={0.5} alignItems='center' justifyContent='flex-end'>
-                        <Typography variant='overline'>Create session</Typography>
-                        <AddIcon fontSize='small' />
-                      </Stack>
-                    </Button>
-                  </Stack>
-                  <List component="nav" disablePadding sx={{ maxHeight: 200, overflow: 'auto' }}>
-                    {dummyData?.programInfo?.map((session: any, index: any) => (
-                      <ListItemButton key={index}
-                        selected={selectedIndex === index}
-                        onClick={(event) => {
-                          handleListItemClick(event, index);
-                          setSelectedSession(session);
-                          setOpenSelectedSessionDialog(true);
-                        }}
-                      >
-                        <ListItemText primary={session.sessionName} />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </AccordionDetails>
-              </Accordion>
-            </Grid>
-            {/* TODO - We'll need to iterate over the programs instead */}
-            <Grid item xs={12} sm={6}>
-              <Accordion disableGutters>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                >
-                  <Typography variant='h6'>{dummyData0?.programName}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Stack alignItems='center' justifyContent='flex-end'>
-                    <Button fullWidth size='small' color={isDarkMode ? 'secondary' : 'primary'}
-                      onClick={() => {
-                        setOpenCreateSessionDialog(true);
-                      }}
-                    >
-                      <Stack width='100%' direction='row' spacing={0.5} alignItems='center' justifyContent='flex-end'>
-                        <Typography variant='overline'>Create session</Typography>
-                        <AddIcon fontSize='small' />
-                      </Stack>
-                    </Button>
-                  </Stack>
-                  <List component="nav" disablePadding sx={{ maxHeight: 300, overflow: 'auto' }}>
-                    {dummyData0?.programInfo?.map((session: any, index: any) => (
-                      <ListItemButton key={index}
-                        selected={selectedIndex === index}
-                        onClick={(event) => {
-                          handleListItemClick(event, index);
-                          setSelectedSession(session);
-                          setOpenSelectedSessionDialog(true);
-                        }}
-                      >
-                        <ListItemText primary={session.sessionName} />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </AccordionDetails>
-              </Accordion>
-            </Grid>
-          </Grid>
+          <ProgramsTab isDarkMode={isDarkMode} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick} setSelectedSession={setSelectedSession} setOpenSelectedSessionDialog={setOpenSelectedSessionDialog} setOpenCreateSessionDialog={setOpenCreateSessionDialog} dummyData={dummyData} dummyData0={dummyData0} />
         </TabPanel>
         <TabPanel value={tabValue} index={2}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
-                      <Typography variant='h6' sx={{ mx: 2 }}>Snatch</Typography>
-                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                        <LineProgressChart />
-                      </Stack>
-                    </Stack>
-                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
-                      <Stack direction='row' spacing={1}>
-                        <QueryStatsIcon fontSize='small' />
-                        <Typography>View</Typography>
-                      </Stack>
-                    </Button>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
-                      <Typography variant='h6' sx={{ mx: 2 }}>Clean & Jerk</Typography>
-                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                        <LineProgressChart />
-                      </Stack>
-                    </Stack>
-                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
-                      <Stack direction='row' spacing={2}>
-                        <QueryStatsIcon fontSize='small' />
-                        <Typography>View</Typography>
-                      </Stack>
-                    </Button>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
-                      <Typography variant='h6' sx={{ mx: 2 }}>Clean</Typography>
-                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                        <LineProgressChart />
-                      </Stack>
-                    </Stack>
-                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
-                      <Stack direction='row' spacing={2}>
-                        <QueryStatsIcon fontSize='small' />
-                        <Typography>View</Typography>
-                      </Stack>
-                    </Button>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Card>
-                <CardContent>
-                  <Stack spacing={2}>
-                    <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
-                      <Typography variant='h6' sx={{ mx: 2 }}>Jerk</Typography>
-                      <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                        <LineProgressChart />
-                      </Stack>
-                    </Stack>
-                    <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
-                      <Stack direction='row' spacing={2}>
-                        <QueryStatsIcon fontSize='small' />
-                        <Typography>View</Typography>
-                      </Stack>
-                    </Button>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+          <ProgressTab isDarkMode={isDarkMode} />
         </TabPanel>
       </SwipeableViews>
-      {/* TODO - Move these */}
       <CreateSessionDialog openCreateSessionDialog={openCreateSessionDialog} setOpenCreateSessionDialog={setOpenCreateSessionDialog} />
       <SelectedSessionDialog programName={dummyData?.programName} isDarkMode={isDarkMode} selectedSession={selectedSession} setSelectedSession={setSelectedSession} openSelectedSessionDialog={openSelectedSessionDialog} setOpenSelectedSessionDialog={setOpenSelectedSessionDialog} />
-      {/* TEST */}
-      {/* <StartSessionDialog openStartSessionDialog={openStartSessionDialog} setOpenStartSessionDialog={setOpenStartSessionDialog} /> */}
-
     </Box>
   );
 };
