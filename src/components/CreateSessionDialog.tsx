@@ -12,9 +12,7 @@ const CreateSessionDialog = ({ openCreateSessionDialog, setOpenCreateSessionDial
   };
 
   return (
-    // <Dialog fullWidth open={openCreateSessionDialog} onClose={handleCloseCreateSessionDialog}>
     <Dialog fullScreen open={openCreateSessionDialog} onClose={handleCloseCreateSessionDialog} sx={{ m: 4 }}>
-    {/* <Dialog open={openCreateSessionDialog} onClose={handleCloseCreateSessionDialog} sx={{ m: 4 }}> */}
       <DialogTitle>Create A New Session</DialogTitle>
       <DialogContent>
         <Typography>Here is some dialog content.</Typography>

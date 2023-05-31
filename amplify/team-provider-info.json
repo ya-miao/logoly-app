@@ -20,6 +20,9 @@
           "appId": "d1a5ho07ayhfbf",
           "type": "manual"
         }
+      },
+      "api": {
+        "logolyapp": {}
       }
     }
   }

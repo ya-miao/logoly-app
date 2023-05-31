@@ -19,26 +19,26 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 // TODO - end
 
-import AddIcon from '@mui/icons-material/Add';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import PersonIcon from '@mui/icons-material/Person';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import { useTheme } from '@mui/material/styles';
 
-import SelectedSessionDialog from "../components/SelectedSessionDIalog";
+import SelectedSessionDialog from "../components/SelectedSessionDialog";
 import CreateSessionDialog from "../components/CreateSessionDialog";
 
-// TEST 
-import LineProgressChart from "../components/charts/LineProgressChart";
 import ProgressTab from "../components/tabs/ProgressTab";
 import ProgramsTab from "../components/tabs/ProgramsTab";
+import ReviewTab from "../components/tabs/ReviewTab";
+import ScheduleTab from "../components/tabs/ScheduleTab";
 import StatsTab from "../components/tabs/StatsTab";
-//
+import AccountTab from "../components/tabs/AccountTab";
 
 interface MainPageProps {
   isDarkMode: boolean;
@@ -626,12 +626,14 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
       overflow='auto'
     >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs variant="fullWidth" value={tabValue} onChange={handleChangeTab}>
-          <Tab label={
-            <Stack alignItems='center' justifyContent='center' spacing={0.5}>
-              <PersonIcon />
-              <Typography variant='caption'>Account</Typography>
-            </Stack>} />
+        <Tabs
+          // variant="fullWidth"
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile
+          value={tabValue}
+          onChange={handleChangeTab}
+        >
           <Tab label={
             <Stack alignItems='center' justifyContent='center' spacing={0.5}>
               <FitnessCenterIcon />
@@ -642,6 +644,26 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
               <ShowChartIcon />
               <Typography variant='caption'>Progress</Typography>
             </Stack>} />
+          <Tab label={
+            <Stack alignItems='center' justifyContent='center' spacing={0.5}>
+              <AssignmentIcon />
+              <Typography variant='caption'>Review</Typography>
+            </Stack>} />
+          <Tab label={
+            <Stack alignItems='center' justifyContent='center' spacing={0.5}>
+              <CalendarTodayIcon />
+              <Typography variant='caption'>Schedule</Typography>
+            </Stack>} />
+          <Tab label={
+            <Stack alignItems='center' justifyContent='center' spacing={0.5}>
+              <PersonIcon />
+              <Typography variant='caption'>Stats</Typography>
+            </Stack>} />
+          <Tab label={
+            <Stack alignItems='center' justifyContent='center' spacing={0.5}>
+              <SettingsIcon />
+              <Typography variant='caption'>Account</Typography>
+            </Stack>} />
         </Tabs>
       </Box>
       <SwipeableViews
@@ -650,13 +672,22 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={tabValue} index={0}>
-          <StatsTab isDarkMode={isDarkMode} />
-        </TabPanel>
-        <TabPanel value={tabValue} index={1}>
           <ProgramsTab isDarkMode={isDarkMode} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick} setSelectedSession={setSelectedSession} setOpenSelectedSessionDialog={setOpenSelectedSessionDialog} setOpenCreateSessionDialog={setOpenCreateSessionDialog} dummyData={dummyData} dummyData0={dummyData0} />
         </TabPanel>
-        <TabPanel value={tabValue} index={2}>
+        <TabPanel value={tabValue} index={1}>
           <ProgressTab isDarkMode={isDarkMode} />
+        </TabPanel>
+        <TabPanel value={tabValue} index={2}>
+          <ReviewTab isDarkMode={isDarkMode} />
+        </TabPanel>
+        <TabPanel value={tabValue} index={3}>
+          <ScheduleTab isDarkMode={isDarkMode} />
+        </TabPanel>
+        <TabPanel value={tabValue} index={4}>
+          <StatsTab isDarkMode={isDarkMode} />
+        </TabPanel>
+        <TabPanel value={tabValue} index={5}>
+          <AccountTab isDarkMode={isDarkMode} />
         </TabPanel>
       </SwipeableViews>
       <CreateSessionDialog openCreateSessionDialog={openCreateSessionDialog} setOpenCreateSessionDialog={setOpenCreateSessionDialog} />

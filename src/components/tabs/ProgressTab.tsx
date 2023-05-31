@@ -16,27 +16,7 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
           <CardContent>
             <Stack spacing={2}>
               <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
-                <Typography variant='h6' sx={{ mx: 2 }}>Snatch</Typography>
-                <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                  <LineProgressChart />
-                </Stack>
-              </Stack>
-              <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
-                <Stack direction='row' spacing={1}>
-                  <QueryStatsIcon fontSize='small' />
-                  <Typography>View</Typography>
-                </Stack>
-              </Button>
-            </Stack>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <Card>
-          <CardContent>
-            <Stack spacing={2}>
-              <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
-                <Typography variant='h6' sx={{ mx: 2 }}>Clean & Jerk</Typography>
+                <Typography variant='h6' sx={{ mx: 2 }}>Clean</Typography>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
                   <LineProgressChart />
                 </Stack>
@@ -51,12 +31,12 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
           </CardContent>
         </Card>
       </Grid>
-      {/* <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={6}>
         <Card>
           <CardContent>
             <Stack spacing={2}>
               <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
-                <Typography variant='h6' sx={{ mx: 2 }}>Clean</Typography>
+                <Typography variant='h6' sx={{ mx: 2 }}>Clean & Jerk</Typography>
                 <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
                   <LineProgressChart />
                 </Stack>
@@ -90,7 +70,27 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
             </Stack>
           </CardContent>
         </Card>
-      </Grid> */}
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Card>
+          <CardContent>
+            <Stack spacing={2}>
+              <Stack direction='column' justifyContent='flex-start' spacing={2} sx={{ mr: 1 }}>
+                <Typography variant='h6' sx={{ mx: 2 }}>Snatch</Typography>
+                <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
+                  <LineProgressChart />
+                </Stack>
+              </Stack>
+              <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+                <Stack direction='row' spacing={1}>
+                  <QueryStatsIcon fontSize='small' />
+                  <Typography>View</Typography>
+                </Stack>
+              </Button>
+            </Stack>
+          </CardContent>
+        </Card>
+      </Grid>
     </Grid>
   )
 };

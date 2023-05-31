@@ -1,13 +1,13 @@
-import { Card, CardContent, Grid, Stack, TextField, Typography } from "@mui/material"
+import { Button, Card, CardContent, Divider, Grid, Stack, TextField, Typography } from "@mui/material"
 
-interface StatsTabProps {
+interface AccountTabProps {
   isDarkMode: boolean;
-}
+};
 
-const StatsTab = ({isDarkMode}: StatsTabProps) => {
+const AccountTab = ({ isDarkMode }: AccountTabProps) => {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
+      {/* <Grid item xs={12} sm={6}>
         <Card>
           <CardContent>
             <Stack direction='column' spacing={2} sx={{ mx: 1 }}>
@@ -22,17 +22,18 @@ const StatsTab = ({isDarkMode}: StatsTabProps) => {
             </Stack>
           </CardContent>
         </Card>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} sm={6}>
         <Card>
           <CardContent>
             <Stack direction='column' spacing={2} sx={{ mx: 1 }}>
-              <Typography variant='h6'>Max Lifts</Typography>
+              <Typography variant='h6'>Account Settings</Typography>
               <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                <TextField variant='filled' size='small' label='Clean' defaultValue='45 kg' />
-                <TextField variant='filled' size='small' label='Clean & Jerk' defaultValue='40 kg' />
-                <TextField variant='filled' size='small' label='Jerk' defaultValue='40 kg' />
-                <TextField variant='filled' size='small' label='Snatch' defaultValue='35 kg' />
+                <TextField variant='filled' size='small' label='username' defaultValue='l_am_null' />
+                <TextField variant='filled' size='small' label='Email' defaultValue='some@email.com' />
+                <Divider />
+                <Button variant='outlined' color={isDarkMode ? 'secondary' : 'primary'} sx={{ width: '80%' }}>Change Password</Button>
+                <Button variant='outlined' color='error' sx={{ width: '80%' }}>Delete Account</Button>
               </Stack>
             </Stack>
           </CardContent>
@@ -42,4 +43,4 @@ const StatsTab = ({isDarkMode}: StatsTabProps) => {
   )
 };
 
-export default StatsTab;
+export default AccountTab;
