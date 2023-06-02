@@ -8,14 +8,13 @@ import StartSessionDialog from "./StartSessionDialog";
 
 interface SelectedSessionDialogProps {
   isDarkMode: boolean;
-  programName: any;
   selectedSession: any;
-  setSelectedSession: (selectedSession: any) => void;
+  selectedProgram: any;
   openSelectedSessionDialog: boolean;
   setOpenSelectedSessionDialog: (openSelectedSessionDialog: boolean) => void;
 }
 
-const SelectedSessionDialog = ({ isDarkMode, programName, selectedSession, setSelectedSession, openSelectedSessionDialog, setOpenSelectedSessionDialog }: SelectedSessionDialogProps) => {
+const SelectedSessionDialog = ({ isDarkMode, selectedSession, selectedProgram, openSelectedSessionDialog, setOpenSelectedSessionDialog }: SelectedSessionDialogProps) => {
 
   const [openStartSessionDialog, setOpenStartSessionDialog] = useState(false)
 
@@ -35,7 +34,7 @@ const SelectedSessionDialog = ({ isDarkMode, programName, selectedSession, setSe
         {/* <Dialog open={openSelectedSessionDialog} onClose={handleCloseSelectedSessionDialog} sx={{ m: 4 }}> */}
         <DialogTitle>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
-            <Typography variant='h6'>{programName}</Typography>
+            <Typography variant='h6'>{selectedProgram}</Typography>
             <IconButton onClick={handleCloseSelectedSessionDialog}>
               <CloseIcon />
             </IconButton>

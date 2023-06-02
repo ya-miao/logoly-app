@@ -16,15 +16,18 @@ interface ProgramsTabProps {
   handleListItemClick: any;
   selectedIndex: any;
   setSelectedSession: any;
+  setSelectedProgram: any;
   setOpenSelectedSessionDialog: any;
   setOpenCreateSessionDialog: any;
-  // TODO: Temporary data
-  dummyData: any;
-  dummyData0: any;
-  // TODO - end
+  programs: any;
 };
 
-const ProgramsTab = ({ isDarkMode, selectedIndex, handleListItemClick, setSelectedSession, setOpenSelectedSessionDialog, setOpenCreateSessionDialog, dummyData, dummyData0 }: ProgramsTabProps) => {
+const ProgramsTab = ({ isDarkMode, selectedIndex, handleListItemClick, setSelectedSession, setSelectedProgram, setOpenSelectedSessionDialog, setOpenCreateSessionDialog, programs }: ProgramsTabProps) => {
+  
+  // TODO: Test
+  // console.log(programs);
+  // TODO - end
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -205,7 +208,52 @@ const ProgramsTab = ({ isDarkMode, selectedIndex, handleListItemClick, setSelect
           </Stack>
         </Button>
       </Grid>
-      <Grid item xs={12} sm={6}>
+      {programs?.map((programItem: any) => (
+        <Grid item xs={12} sm={6}>
+        <Accordion disableGutters>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+          >
+            <Typography variant='h6'>{programItem?.name}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Stack alignItems='center' justifyContent='flex-end'>
+              <Button fullWidth size='small' color={isDarkMode ? 'secondary' : 'primary'}
+                onClick={() => {
+                  setOpenCreateSessionDialog(true);
+                }}
+              >
+                <Stack width='100%' direction='row' spacing={0.5} alignItems='center' justifyContent='flex-end'>
+                  <Typography variant='overline'>Create session</Typography>
+                  <AddIcon fontSize='small' />
+                </Stack>
+              </Button>
+            </Stack>
+            <List component="nav" disablePadding sx={{ maxHeight: 200, overflow: 'auto' }}>
+              {programItem?.program?.map((session: any, index: any) => (
+                // TODO: setSelectedProgram in here 
+                <ListItemButton key={index}
+                  selected={selectedIndex === index}
+                  onClick={(event) => {
+                    handleListItemClick(event, index);
+                    setSelectedSession(session);
+                    setOpenSelectedSessionDialog(true);
+                    // TODO:
+                    // console.log('programItem: ');
+                    // console.log(programItem?.name);
+                    setSelectedProgram(programItem?.name);
+                    // TODO - end
+                  }}
+                >
+                  <ListItemText primary={session.sessionName} />
+                </ListItemButton>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+      </Grid>
+      ))}
+      {/* <Grid item xs={12} sm={6}>
         <Accordion disableGutters>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -242,7 +290,6 @@ const ProgramsTab = ({ isDarkMode, selectedIndex, handleListItemClick, setSelect
           </AccordionDetails>
         </Accordion>
       </Grid>
-      {/* TODO - We'll need to iterate over the programs instead */}
       <Grid item xs={12} sm={6}>
         <Accordion disableGutters>
           <AccordionSummary
@@ -279,7 +326,7 @@ const ProgramsTab = ({ isDarkMode, selectedIndex, handleListItemClick, setSelect
             </List>
           </AccordionDetails>
         </Accordion>
-      </Grid>
+      </Grid> */}
     </Grid >
   );
 };
