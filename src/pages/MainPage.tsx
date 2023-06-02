@@ -1,5 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Fab, Grid, IconButton, ListItem, Stack, Tab, Tabs, TextField, Typography } from "@mui/material";
+import { API } from "aws-amplify";
+import * as mutations from '../graphql/mutations';
+import * as queries from '../graphql/queries';
+
+// TODO
+import { ListProgramsQuery } from "../API";
+// TODO
 
 // TODO: Imports
 import Card from '@mui/material/Card';
@@ -39,6 +46,7 @@ import ReviewTab from "../components/tabs/ReviewTab";
 import ScheduleTab from "../components/tabs/ScheduleTab";
 import StatsTab from "../components/tabs/StatsTab";
 import AccountTab from "../components/tabs/AccountTab";
+import { parse } from "path";
 
 interface MainPageProps {
   isDarkMode: boolean;
@@ -47,8 +55,8 @@ interface MainPageProps {
 const MainPage = ({ isDarkMode }: MainPageProps) => {
   const theme = useTheme();
 
-  // TEST
-  const [openStartSessionDialog, setOpenStartSessionDialog] = useState(false);
+  // TODO
+  const [programs, setPrograms] = useState([]);
   //
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -617,6 +625,41 @@ const MainPage = ({ isDarkMode }: MainPageProps) => {
   const handleChangeIndex = (index: number) => {
     setTabValue(index);
   };
+
+  // TODO: Pull programs from backend
+  const fetchPrograms = async () => {
+    const allPrograms: any = await API.graphql({ query: queries.listPrograms });
+    console.log('allPrograms:');
+    const programsList = allPrograms?.data?.listPrograms?.items;
+    console.log(programsList);
+
+    if (programsList) {
+      const parsedProgramList = programsList.map((programItem: any) => {
+        return ({
+          ...programItem,
+          program: programItem?.program?.map((sessionItem: any) => {
+            return (JSON.parse(sessionItem));
+          }),
+        });
+      })
+      console.log('parsedProgramList: ');
+      console.log(parsedProgramList);
+      // TODO: set parsed programs here
+      setPrograms(parsedProgramList);
+    }
+
+    // console.log(allPrograms);
+  };
+  // TODO
+  useEffect(() => {
+    try {
+      fetchPrograms();
+      console.log('FETCHED');
+    } catch (error) {
+      console.log('error', error);
+    }
+  }, []);
+  // TODO - end
 
   return (
     <Box
