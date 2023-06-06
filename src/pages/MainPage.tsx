@@ -37,8 +37,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import { useTheme } from '@mui/material/styles';
 
-import SelectedSessionDialog from "../components/SelectedSessionDialog";
-import CreateSessionDialog from "../components/CreateSessionDialog";
+import SelectedSessionDialog from "../components/dialogs/SelectedSessionDialog";
+import CreateSessionDialog from "../components/dialogs/CreateSessionDialog";
 
 import ProgressTab from "../components/tabs/ProgressTab";
 import ProgramsTab from "../components/tabs/ProgramsTab";
@@ -46,7 +46,6 @@ import ReviewTab from "../components/tabs/ReviewTab";
 import ScheduleTab from "../components/tabs/ScheduleTab";
 import StatsTab from "../components/tabs/StatsTab";
 import AccountTab from "../components/tabs/AccountTab";
-import { parse } from "path";
 
 interface MainPageProps {
   isDarkMode: boolean;

@@ -12,107 +12,57 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 //
 
-import ExerciseTracker from "./ExerciseTracker";
+import ExerciseTracker from "../ExerciseTracker";
 
 interface StartSessionDialogProps {
   isDarkMode: boolean;
-  selectedSession: any;
-  openStartSessionDialog: boolean;
-  setOpenStartSessionDialog: (openStartSessionDialog: boolean) => void;
+  openSingleSessionDialog: boolean;
+  setOpenSingleSessionDialog: (openSingleSessionDialog: boolean) => void;
 }
 
-const StartSessionDialog = ({ isDarkMode, selectedSession, openStartSessionDialog, setOpenStartSessionDialog }: StartSessionDialogProps) => {
+const StartSessionDialog = ({ isDarkMode, openSingleSessionDialog, setOpenSingleSessionDialog }: StartSessionDialogProps) => {
 
   const theme = useTheme();
 
-  const [activeStep, setActiveStep] = useState(0);
+  // const [activeStep, setActiveStep] = useState(0);
   // const [activeSet, setActiveSet] = useState(0);
-  const [activeStepSet, setActiveStepSet] = useState(0);
+  // const [activeStepSet, setActiveStepSet] = useState(0);
 
   const [isCurrentComplete, setIsCurrentComplete] = useState(false);
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep: any) => prevActiveStep + 1);
-    setActiveStepSet(0);
+    // setActiveStep((prevActiveStep: any) => prevActiveStep + 1);
+    // setActiveStepSet(0);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep: any) => prevActiveStep - 1);
-    setActiveStepSet(sessionExercises[activeStep - 1]?.sets);
+    // setActiveStep((prevActiveStep: any) => prevActiveStep - 1);
+    // setActiveStepSet(sessionExercises[activeStep - 1]?.sets);
   };
 
-  // const handleNextSet = () => {
-  //   setActiveSet((prevActiveSet: any) => prevActiveSet + 1);
-  // };
-
-  // const handleBackSet = () => {
-  //   setActiveSet((prevActiveSet: any) => prevActiveSet - 1);
-  // };
-
-  // const sessionSteps = [
-  //   {
-  //     label: 'Select campaign settings',
-  //     description: `For each ad campaign that you create, you can control how much
-  //               you're willing to spend on clicks and conversions, which networks
-  //               and geographical locations you want your ads to show on, and more.`,
-  //   },
-  //   {
-  //     label: 'Create an ad group',
-  //     description:
-  //       'An ad group contains one or more ads which target a shared set of keywords.',
-  //   },
-  //   {
-  //     label: 'Create an ad',
-  //     description: `Try out different ad text to see what brings in the most customers,
-  //               and learn how to enhance your ads using features like ad extensions.
-  //               If you run into any problems with your ads, find out how to tell if
-  //               they're running and how to resolve approval issues.`,
-  //   },
-  // ];
-
-  console.log('selectedSession?.exercises: ');
-  console.log(selectedSession?.exercises);
-  console.log(selectedSession?.exercises?.map((exercise: any) => {
-    return (
-      exercise
-      // {
-      //   'label': exercise?.exerciseName,
-      //   'description': exercise?.percent,
-      // }
-    );
-    // return
-    //   ({ 
-    //     'label': exercise?.exerciseName,
-    //     'description': exercise?.percent,
-    //   });
-  }));
-
   const handleCloseStartSessionDialog = () => {
-    setOpenStartSessionDialog(false);
+    setOpenSingleSessionDialog(false);
     // TODO: Add confirm if want to end session here
   };
 
-  console.log('selectedSession');
-  console.log(selectedSession);
-
-  const sessionExercises = selectedSession?.exercises || [];
-
   return (
-    <Dialog fullScreen open={openStartSessionDialog} onClose={handleCloseStartSessionDialog}>
+    <Dialog fullScreen open={openSingleSessionDialog} onClose={handleCloseStartSessionDialog}>
       <DialogTitle>
         <Stack direction='row' alignItems='center' justifyContent='space-between'>
-          <Typography variant='h6'>{selectedSession?.sessionName}</Typography>
+          <Typography variant='h6'>Single Session Mode</Typography>
           <IconButton onClick={() => {
-            setOpenStartSessionDialog(false);
+            setOpenSingleSessionDialog(false);
           }}>
             <CloseIcon />
           </IconButton>
         </Stack>
       </DialogTitle>
       <DialogContent>
-        {/* <Divider sx={{ mt: 2 }} /> */}
+        <Typography>
+          Create and start a single workout session, independent of stored structured programs.
+        </Typography>
         <Divider />
-        <MobileStepper
+        {/* <MobileStepper
           // variant="progress"
           // variant="dots"
           variant="text"
@@ -149,7 +99,7 @@ const StartSessionDialog = ({ isDarkMode, selectedSession, openStartSessionDialo
         <Divider sx={{ mt: 2.5 }} />
         <Box sx={{ height: '50vh' }}>
           <ExerciseTracker isDarkMode={isDarkMode} currentExercise={sessionExercises[activeStep]} activeStepSet={activeStepSet} setActiveStepSet={setActiveStepSet} isCurrentComplete={isCurrentComplete} setIsCurrentComplete={setIsCurrentComplete} />
-        </Box>
+        </Box> */}
       </DialogContent>
     </Dialog >
   )

@@ -29,9 +29,7 @@ const SelectedSessionDialog = ({ isDarkMode, selectedSession, selectedProgram, o
 
   return (
     <>
-      {/* <Dialog fullWidth open={openSelectedSessionDialog} onClose={handleCloseSelectedSessionDialog}> */}
       <Dialog fullScreen open={openSelectedSessionDialog} onClose={handleCloseSelectedSessionDialog} sx={{ m: 2 }}>
-        {/* <Dialog open={openSelectedSessionDialog} onClose={handleCloseSelectedSessionDialog} sx={{ m: 4 }}> */}
         <DialogTitle>
           <Stack direction='row' alignItems='center' justifyContent='space-between'>
             <Typography variant='h6'>{selectedProgram}</Typography>
@@ -47,14 +45,12 @@ const SelectedSessionDialog = ({ isDarkMode, selectedSession, selectedProgram, o
           <Stack spacing={2} alignItems='center' justifyContent='center'>
             <Button variant='contained' fullWidth color={isDarkMode ? 'secondary' : 'primary'}
               onClick={() => {
-                // setOpenSelectedSessionDialog(false);
                 setOpenStartSessionDialog(true);
               }}
             >
               Start Session
             </Button>
             <TableContainer component={Paper}>
-              {/* <Table sx={{ minWidth: 650 }} aria-label="simple table"> */}
               <Table size='small' align='center'>
                 <TableHead>
                   <TableRow>
