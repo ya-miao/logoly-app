@@ -29,7 +29,7 @@ const AccountTab = ({ isDarkMode }: AccountTabProps) => {
             <Stack direction='column' spacing={2} sx={{ mx: 1 }}>
               <Typography variant='h6'>Account Settings</Typography>
               <Stack direction='column' alignItems='center' justifyContent='center' spacing={2}>
-                <TextField variant='filled' size='small' label='username' defaultValue='l_am_null' />
+                <TextField variant='filled' size='small' label='Username' defaultValue='l_am_null' />
                 <TextField variant='filled' size='small' label='Email' defaultValue='some@email.com' />
                 <Divider />
                 <Button variant='outlined' color={isDarkMode ? 'secondary' : 'primary'} sx={{ width: '80%' }}>Change Password</Button>

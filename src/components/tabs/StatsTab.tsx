@@ -1,10 +1,20 @@
 import { Card, CardContent, Grid, Stack, TextField, Typography } from "@mui/material"
 
+// import makeStyles from "@mui/material/style";
+
 interface StatsTabProps {
   isDarkMode: boolean;
 }
 
+// const useStyles = makeStyles({
+//   input: {
+//     color: "white"
+//   }
+// });
+
 const StatsTab = ({isDarkMode}: StatsTabProps) => {
+  // const classes = useStyles();
+  
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={6}>

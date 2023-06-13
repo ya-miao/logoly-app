@@ -43,7 +43,8 @@ const SelectedSessionDialog = ({ isDarkMode, selectedSession, selectedProgram, o
             <Typography variant='overline' sx={{ mb: 0.5 }}>{selectedSession?.sessionName}</Typography>
           </Stack>
           <Stack spacing={2} alignItems='center' justifyContent='center'>
-            <Button variant='contained' fullWidth color={isDarkMode ? 'secondary' : 'primary'}
+            {/* <Button variant='contained' fullWidth color={isDarkMode ? 'secondary' : 'primary'} */}
+            <Button variant='contained' fullWidth
               onClick={() => {
                 setOpenStartSessionDialog(true);
               }}
@@ -83,11 +84,25 @@ const SelectedSessionDialog = ({ isDarkMode, selectedSession, selectedProgram, o
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell align='center'>
-                        {exercise?.exerciseName}
+                        <Typography variant='caption'>
+                          {exercise?.exerciseName}
+                        </Typography>
                       </TableCell>
-                      <TableCell align='center'>{exercise?.sets}</TableCell>
-                      <TableCell align='center'>{exercise?.reps}</TableCell>
-                      <TableCell align='center'>{exercise?.percent}</TableCell>
+                      <TableCell align='center'>
+                        <Typography variant='caption'>
+                          {exercise?.sets}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align='center'>
+                        <Typography variant='caption'>
+                          {exercise?.reps}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align='center'>
+                        <Typography variant='caption'>
+                          {exercise?.percent}
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

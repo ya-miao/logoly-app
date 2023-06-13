@@ -33,23 +33,23 @@ const App = () => {
       // mode: 'dark',
       mode: isDarkMode ? 'dark' : 'light',
       primary: {
-        // main: '#b53f41',
-        // main: '#ad4a4b',
-        // main: '#332b41',
-        // main: '#3d3a4a',
-        // main: '#2e2e39',
-        main: isDarkMode ? '#212121' : '#363646',
+        // main: isDarkMode ? '#212121' : '#363646',
+        // main: '#9a3a3a',
+        // main: '#9a4747',
+        main: '#ffffff',
       },
       secondary: {
-        main: '#ffffff',
-        // main: '#ad4a4b',
-        // main: '#efebfb',
+        // main: '#ffffff',
+        // main: '#9a3a3a',
+        main: '#9a4747',
         // main: '#eeebfb',
-        // main: '#9e9e9e',
-        // main: '#212121'     
+        // main: '#101010'
       },
     },
     typography: {
+      allVariants: {
+        color: '#ffffff',
+      },
       fontFamily: 'Montserrat',
       h1: {
         fontFamily: 'Orbitron',
@@ -70,6 +70,82 @@ const App = () => {
         fontFamily: 'Orbitron',
       },
     },
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            color: '#ffffff',
+          }
+        }
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          input: {
+            color: '#ffffff',
+          }
+        }
+      },
+      MuiAccordion: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#1d1d1d',
+            color: '#ffffff',
+          },
+        },
+      },
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#101010',
+            color: '#ffffff',
+          },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#1d1d1d',
+            color: '#ffffff',
+          },
+        },
+      },
+      MuiDialogContentText: {
+        styleOverrides: {
+          root: {
+            color: '#ffffff',
+          },
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            color: '#ffffff'
+          }
+        }
+      },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#101010',
+            color: '#ffffff',
+          },
+        },
+      },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            color: "#aaaaaa"
+          }
+        }
+      },
+      // MuiTable: {
+      //   styleOverrides: {
+      //     root: {
+      //       color: '#ffffff'
+      //     }
+      //   }
+      // },
+    }
   });
 
   const { tokens } = authUseTheme();
@@ -86,7 +162,8 @@ const App = () => {
       colors: {
         background: {
           primary: {
-            value: isDarkMode ? '#212121' : '#363646',
+            // value: isDarkMode ? '#212121' : '#363646',
+            value: '#1d1d1d',
           },
           secondary: {
             value: '#ffffff',
@@ -139,7 +216,11 @@ const App = () => {
   const components = {
     Header() {
       return (
-        <Card sx={{ mb: 2, bgcolor: isDarkMode ? '#212121' : '#363646' }}>
+        <Card sx={{
+          mb: 2,
+          // bgcolor: isDarkMode ? '#212121' : '#363646'
+          bgcolor: '#101010'
+        }}>
           <CardContent>
             <Stack direction='row' spacing={1} alignItems='center' justifyContent='center'>
               <FitnessCenterIcon fontSize='large' color="secondary" />
@@ -151,7 +232,11 @@ const App = () => {
     },
     Footer() {
       return (
-        <Card sx={{ mt: 2, bgcolor: isDarkMode ? '#212121' : '#363646' }}>
+        <Card sx={{
+          mt: 2,
+          // bgcolor: isDarkMode ? '#212121' : '#363646'
+          bgcolor: '#101010'
+        }}>
           <CardContent>
             <Stack direction='row' alignItems='center' justifyContent='center'>
               <Typography variant='overline' color="secondary">Train deliberately.</Typography>
@@ -223,7 +308,11 @@ const App = () => {
 
   return (
     <ThemeProvider theme={siteTheme}>
-      <div style={{ backgroundColor: isDarkMode ? '#696969' : '#bdbdbd', minHeight: '180vh', width: '100%' }}>
+      <div style={{
+        // backgroundColor: isDarkMode ? '#696969' : '#bdbdbd',
+        backgroundColor: '#696969',
+        minHeight: '180vh', width: '100%'
+      }}>
         <Box
           height="100vh"
           // height="180vh"

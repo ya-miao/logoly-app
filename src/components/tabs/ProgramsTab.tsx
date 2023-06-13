@@ -55,7 +55,7 @@ const ProgramsTab = ({ isDarkMode, selectedIndex, handleListItemClick, setSelect
         <Grid item xs={12} sm={6}>
           <Accordion disableGutters>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMoreIcon color='primary' />}
             >
               <Typography variant='h6'>{programItem?.name}</Typography>
             </AccordionSummary>

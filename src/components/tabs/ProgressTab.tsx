@@ -21,7 +21,10 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
                   <LineProgressChart />
                 </Stack>
               </Stack>
-              <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+              <Button size='small' variant='outlined'
+                // color={isDarkMode ? 'secondary' : 'primary'}
+                // color='secondary'
+              >
                 <Stack direction='row' spacing={2}>
                   <QueryStatsIcon fontSize='small' />
                   <Typography>View</Typography>
@@ -41,7 +44,10 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
                   <LineProgressChart />
                 </Stack>
               </Stack>
-              <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+              <Button size='small' variant='outlined'
+                // color={isDarkMode ? 'secondary' : 'primary'}
+                color='secondary'
+              >
                 <Stack direction='row' spacing={2}>
                   <QueryStatsIcon fontSize='small' />
                   <Typography>View</Typography>
@@ -61,7 +67,10 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
                   <LineProgressChart />
                 </Stack>
               </Stack>
-              <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+              <Button size='small' variant='outlined'
+                // color={isDarkMode ? 'secondary' : 'primary'}
+                color='secondary'
+              >
                 <Stack direction='row' spacing={2}>
                   <QueryStatsIcon fontSize='small' />
                   <Typography>View</Typography>
@@ -81,7 +90,10 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
                   <LineProgressChart />
                 </Stack>
               </Stack>
-              <Button size='small' variant='outlined' color={isDarkMode ? 'secondary' : 'primary'}>
+              <Button size='small' variant='outlined'
+                // color={isDarkMode ? 'secondary' : 'primary'}
+                color='secondary'
+              >
                 <Stack direction='row' spacing={1}>
                   <QueryStatsIcon fontSize='small' />
                   <Typography>View</Typography>
