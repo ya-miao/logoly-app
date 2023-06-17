@@ -36,6 +36,7 @@ const App = () => {
         // main: isDarkMode ? '#212121' : '#363646',
         // main: '#9a3a3a',
         // main: '#9a4747',
+        // main: '#cccccc',
         main: '#ffffff',
       },
       secondary: {
@@ -88,7 +89,8 @@ const App = () => {
       MuiAccordion: {
         styleOverrides: {
           root: {
-            backgroundColor: '#1d1d1d',
+            // backgroundColor: '#1d1d1d',
+            backgroundColor: '#101010',
             color: '#ffffff',
           },
         },
@@ -104,7 +106,8 @@ const App = () => {
       MuiCard: {
         styleOverrides: {
           root: {
-            backgroundColor: '#1d1d1d',
+            // backgroundColor: '#1d1d1d',
+            backgroundColor: '#101010',
             color: '#ffffff',
           },
         },
@@ -119,7 +122,22 @@ const App = () => {
       MuiIconButton: {
         styleOverrides: {
           root: {
-            color: '#ffffff'
+            color: '#ffffff',
+          },
+        }
+      },
+      // MuiLinearProgress: {
+      //   styleOverrides: {
+      //     root: {
+      //       color: '#9a4747',
+      //     },
+      //   },
+      // },
+      MuiMobileStepper: {
+        styleOverrides: {
+          progress: {
+            // color: '#9a4747',
+            backgroundColor: '#1d1d1d',
           }
         }
       },
@@ -134,17 +152,12 @@ const App = () => {
       MuiTab: {
         styleOverrides: {
           root: {
-            color: "#aaaaaa"
-          }
-        }
+            // color: "#aaaaaa",
+            color: "#909090",
+            // color: "#ffffff",
+          },
+        },
       },
-      // MuiTable: {
-      //   styleOverrides: {
-      //     root: {
-      //       color: '#ffffff'
-      //     }
-      //   }
-      // },
     }
   });
 
@@ -223,8 +236,8 @@ const App = () => {
         }}>
           <CardContent>
             <Stack direction='row' spacing={1} alignItems='center' justifyContent='center'>
-              <FitnessCenterIcon fontSize='large' color="secondary" />
-              <Typography variant='h4' color="secondary">LogOly</Typography>
+              <FitnessCenterIcon fontSize='large' color="primary" />
+              <Typography variant='h4' color="primaryf">LogOly</Typography>
             </Stack>
           </CardContent>
         </Card>
@@ -239,7 +252,7 @@ const App = () => {
         }}>
           <CardContent>
             <Stack direction='row' alignItems='center' justifyContent='center'>
-              <Typography variant='overline' color="secondary">Train deliberately.</Typography>
+              <Typography variant='overline' color="primary">Train deliberately.</Typography>
             </Stack>
           </CardContent>
         </Card>

@@ -77,3 +77,39 @@ export const onDeleteSession = /* GraphQL */ `
     }
   }
 `;
+export const onCreateReport = /* GraphQL */ `
+  subscription OnCreateReport($filter: ModelSubscriptionReportFilterInput) {
+    onCreateReport(filter: $filter) {
+      id
+      user
+      sessionId
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateReport = /* GraphQL */ `
+  subscription OnUpdateReport($filter: ModelSubscriptionReportFilterInput) {
+    onUpdateReport(filter: $filter) {
+      id
+      user
+      sessionId
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteReport = /* GraphQL */ `
+  subscription OnDeleteReport($filter: ModelSubscriptionReportFilterInput) {
+    onDeleteReport(filter: $filter) {
+      id
+      user
+      sessionId
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;

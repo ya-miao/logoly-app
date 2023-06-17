@@ -46,7 +46,7 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
               </Stack>
               <Button size='small' variant='outlined'
                 // color={isDarkMode ? 'secondary' : 'primary'}
-                color='secondary'
+                // color='secondary'
               >
                 <Stack direction='row' spacing={2}>
                   <QueryStatsIcon fontSize='small' />
@@ -69,7 +69,7 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
               </Stack>
               <Button size='small' variant='outlined'
                 // color={isDarkMode ? 'secondary' : 'primary'}
-                color='secondary'
+                // color='secondary'
               >
                 <Stack direction='row' spacing={2}>
                   <QueryStatsIcon fontSize='small' />
@@ -92,7 +92,7 @@ const ProgressTab = ({ isDarkMode }: ProgressTabProps) => {
               </Stack>
               <Button size='small' variant='outlined'
                 // color={isDarkMode ? 'secondary' : 'primary'}
-                color='secondary'
+                // color='secondary'
               >
                 <Stack direction='row' spacing={1}>
                   <QueryStatsIcon fontSize='small' />

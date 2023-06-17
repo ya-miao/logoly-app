@@ -17,3 +17,10 @@ type Session @model {
   name: String!
   exercises: AWSJSON
 }
+
+type Report @model {
+  id: ID!
+  user: String!
+  sessionId: ID!
+  notes: String
+}

@@ -66,3 +66,34 @@ export const listSessions = /* GraphQL */ `
     }
   }
 `;
+export const getReport = /* GraphQL */ `
+  query GetReport($id: ID!) {
+    getReport(id: $id) {
+      id
+      user
+      sessionId
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listReports = /* GraphQL */ `
+  query ListReports(
+    $filter: ModelReportFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listReports(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        user
+        sessionId
+        notes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
