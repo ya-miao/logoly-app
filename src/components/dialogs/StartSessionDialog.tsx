@@ -30,6 +30,7 @@ const StartSessionDialog = ({ isDarkMode, selectedSession, openStartSessionDialo
   const [activeStepSet, setActiveStepSet] = useState(0);
 
   const [isCurrentComplete, setIsCurrentComplete] = useState(false);
+  const [isWorkoutEnd, setIsWorkoutEnd] = useState(false);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep: any) => prevActiveStep + 1);
@@ -92,8 +93,11 @@ const StartSessionDialog = ({ isDarkMode, selectedSession, openStartSessionDialo
     // TODO: Add confirm if want to end session here
   };
 
-  console.log('selectedSession');
-  console.log(selectedSession);
+  console.log('TEST:');
+  console.log('activeStep: ');
+  console.log(activeStep);
+  console.log('selectedSession?.exercises?.length: ');
+  console.log(selectedSession?.exercises?.length - 1);
 
   const sessionExercises = selectedSession?.exercises || [];
 
@@ -110,11 +114,15 @@ const StartSessionDialog = ({ isDarkMode, selectedSession, openStartSessionDialo
         </Stack>
       </DialogTitle>
       <DialogContent>
-        {/* <Divider sx={{ mt: 2 }} /> */}
+        <Stack alignItems='center' justifyContent='center'>
+          <Button fullWidth variant='contained' onClick={() => {
+            console.log('API call to complete session!')
+          }}>
+            Complete Session
+          </Button>
+        </Stack>
         <Divider />
         <MobileStepper
-          // variant="progress"
-          // variant="dots"
           variant="text"
           steps={sessionExercises?.length}
           position="static"
@@ -122,7 +130,7 @@ const StartSessionDialog = ({ isDarkMode, selectedSession, openStartSessionDialo
           sx={{ flexGrow: 1, bgcolor: isDarkMode ? 'transparent' : 'transparent' }}
           nextButton={
             <Fab size='small' color={isDarkMode ? 'secondary' : 'primary'} onClick={handleNext}
-              disabled={ !isCurrentComplete || activeStep === (sessionExercises?.length === 0 ? 0 : sessionExercises?.length - 1)}
+              disabled={!isCurrentComplete || activeStep === (sessionExercises?.length === 0 ? 0 : sessionExercises?.length - 1)}
             >
               {theme.direction === 'rtl' ? (
                 <KeyboardArrowLeft />

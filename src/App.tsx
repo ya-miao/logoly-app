@@ -237,7 +237,7 @@ const App = () => {
           <CardContent>
             <Stack direction='row' spacing={1} alignItems='center' justifyContent='center'>
               <FitnessCenterIcon fontSize='large' color="primary" />
-              <Typography variant='h4' color="primaryf">LogOly</Typography>
+              <Typography variant='h4' color="primary">LogOly</Typography>
             </Stack>
           </CardContent>
         </Card>

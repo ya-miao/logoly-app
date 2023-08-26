@@ -62,44 +62,6 @@ const StartSessionDialog = ({ isDarkMode, openSingleSessionDialog, setOpenSingle
           Create and start a single workout session, independent of stored structured programs.
         </Typography>
         <Divider />
-        {/* <MobileStepper
-          // variant="progress"
-          // variant="dots"
-          variant="text"
-          steps={sessionExercises?.length}
-          position="static"
-          activeStep={activeStep}
-          sx={{ flexGrow: 1, bgcolor: isDarkMode ? 'transparent' : 'transparent' }}
-          nextButton={
-            <Fab size='small' color={isDarkMode ? 'secondary' : 'primary'} onClick={handleNext}
-              disabled={ !isCurrentComplete || activeStep === (sessionExercises?.length === 0 ? 0 : sessionExercises?.length - 1)}
-            >
-              {theme.direction === 'rtl' ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
-            </Fab>
-          }
-          backButton={
-            <Fab size='small' color={isDarkMode ? 'secondary' : 'primary'} onClick={handleBack} disabled={activeStep === 0}>
-              {theme.direction === 'rtl' ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
-            </Fab>
-          }
-        />
-        <Divider sx={{ mb: 2 }} />
-        <Stack alignItems='center' justifyContent='center'>
-          <Typography variant='overline'>Current Exercise</Typography>
-          <Typography variant='h6'>{sessionExercises ? sessionExercises[activeStep]?.exerciseName : ''}</Typography>
-        </Stack>
-        <Divider sx={{ mt: 2.5 }} />
-        <Box sx={{ height: '50vh' }}>
-          <ExerciseTracker isDarkMode={isDarkMode} currentExercise={sessionExercises[activeStep]} activeStepSet={activeStepSet} setActiveStepSet={setActiveStepSet} isCurrentComplete={isCurrentComplete} setIsCurrentComplete={setIsCurrentComplete} />
-        </Box> */}
       </DialogContent>
     </Dialog >
   )
